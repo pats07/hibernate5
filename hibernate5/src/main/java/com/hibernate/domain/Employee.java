@@ -2,6 +2,7 @@ package com.hibernate.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -12,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,7 +33,7 @@ public class Employee implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name= "id")
+	@Column(name= "emp_id")
 	private long id;
 	
 	@Column(name="first_name")
@@ -45,6 +47,17 @@ public class Employee implements Serializable {
 	
 	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Address address;
+
+	@OneToMany(mappedBy="employee")
+	public Set<Email> emails;
+	
+	public Set<Email> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(Set<Email> emails) {
+		this.emails = emails;
+	}
 
 	public long getId() {
 		return id;

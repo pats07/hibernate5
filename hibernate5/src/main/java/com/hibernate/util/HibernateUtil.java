@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
 import com.hibernate.domain.Address;
+import com.hibernate.domain.Email;
 import com.hibernate.domain.Employee;
 import com.hibernate.domain.PoLine;
 import com.hibernate.domain.PrHeader;
@@ -27,7 +28,8 @@ public class HibernateUtil {
 				// .addAnnotatedClass(PrLine.class)
 				// .addAnnotatedClass(PoLine.class)
 				.addAnnotatedClass(Employee.class)
-				.addAnnotatedClass(Address.class).buildMetadata();
+				.addAnnotatedClass(Address.class)
+				.addAnnotatedClass(Email.class).buildMetadata();
 
 		try {
 			sessionFactory = metadata.getSessionFactoryBuilder().build();
